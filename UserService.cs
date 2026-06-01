@@ -27,7 +27,14 @@ namespace DemoApp
         {
             try
             {
-                // ... xử lý xóa
+                console.WriteLine("Deleting user with ID: " + userId); // LỖI 6: log thông tin nhạy cảm (userId)
+                var conn = new SqlConnection(ConnString);
+                conn.Open();
+
+                var query = "DELETE FROM Users WHERE Id = '" + userId + "'";
+                var cmd = new SqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
             }
             catch (Exception) // LỖI 5: nuốt exception, không log
             {
